@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0 url('/Users/shreyasingh/Desktop/untitled folder 2/clone website/nsut green view.com.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 34px;
+            text-align: left;
+            max-width: 65%;
+            margin: auto;
+        }
+
+        h2 {
+            color: #3498db;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-radius: 25px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 0 0 10px 0;
+            border-radius: 25px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 0 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('arrow.png') no-repeat right center;
+            border-radius: 25px;
+        }
+
+        textarea {
+            height: 100px;
+            border-radius: 25px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            
+            padding: 10px 20px;
+            border: 1px solid #1a5276;
+            border-radius: 25px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2684e0;
+        }
+
+        /* Message Container Styles */
+        .message-container, .validation-message-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            z-index: 1000;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .message-container.show, .validation-message-container.show {
+            display: block;
+            animation: slideIn 0.5s ease-in-out, textEnlarge 0.5s;
+        }
+
+        @keyframes textEnlarge {
+            from {
+                font-size: 16px;
+            }
+            to {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>College Admission Form</h2>
+        <form id="admission-form" action="" method="post">
+            <!-- Personal Information -->
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <!-- Academic Information -->
+            <label for="test-scores">Test Scores:</label>
+            <input type="number" id="test-scores" name="test-scores" required>
+
+            <label for="preferred-program">Preferred Program:</label>
+            <select id="preferred-program" name="preferred-program" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Biology">Biology</option>
+            </select>
+
+            <!-- Additional Information -->
+            <label for="essay">Personal Essay:</label>
+            <textarea id="essay" name="essay" rows="4" required></textarea>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit" id="submit-button">
+        </form>
+
+        <!-- Message Container -->
+        <div class="message-container" id="message-container">
+            <div class="tick-image">&#10003;</div>
+            <div class="tick-animation">Thank you for submitting the form!</div>
+        </div>
+        
+        <!-- Validation Message Container -->
+        <div class="validation-message-container" id="validation-message-container">
+            <div class="validation-image">&#10007;</div>
+            <div class="validation-animation">Please complete all required fields!</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to show the message or validation message container when the form is submitted
+        const form = document.getElementById('admission-form');
+        const messageContainer = document.getElementById('message-container');
+        const validationMessageContainer = document.getElementById('validation-message-container');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (form.checkValidity()) {
+                messageContainer.classList.add('show');
+                form.reset();
+                setTimeout(function () {
+                    messageContainer.classList.remove('show');
+                }, 5000);
+            } else {
+                validationMessageContainer.classList.add('show');
+                setTimeout(function () {
+                    validationMessageContainer.classList.remove('show');
+                }, 5000);
+            }
+        });
+    </script>
+</body
